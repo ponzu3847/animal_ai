@@ -1,0 +1,11 @@
+.DS_Store
+*~
+*.gz
+*.pyc
+__pycache__/
+*.pkl
+.vscode/
+boar
+crow
+monkey
+*workspace
