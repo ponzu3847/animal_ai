@@ -1,5 +1,5 @@
 from keras import Sequential
-from keras.layers import Conv2D,MaxPool2D
+from keras.layers import Conv2D,MaxPool2D,GlobalAveragePooling2D
 from keras.layers import Activation,Dropout,Flatten,Dense
 from keras.utils import np_utils
 import keras
@@ -35,14 +35,15 @@ def model_train(X,y):
     model.add(MaxPool2D(pool_size=(2,2)))
     model.add(Dropout(0.25))
 
-    model.add(Flatten())
-    model.add(Dense(512))
+    # model.add(Flatten())
+    # model.add(Dense(512))
+    model.add(GlobalAveragePooling2D())
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
     model.add(Dense(3))
     model.add(Activation('softmax'))
 
-    opt=keras.optimizers.RMSprop(lr=0.0001,rho=1e-6)
+    opt=keras.optimizers.Adam(learning_rate=0.001)
 
     model.compile(
         loss='categorical_crossentropy',optimizer=opt,metrics=['accuracy'])
