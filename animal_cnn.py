@@ -1,4 +1,4 @@
-from keras import Sequential
+from keras.models import Sequential
 from keras.layers import Conv2D,MaxPool2D
 from keras.layers import Activation,Dropout,Flatten,Dense
 from keras.utils import np_utils
