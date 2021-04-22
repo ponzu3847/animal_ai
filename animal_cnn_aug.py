@@ -2,7 +2,7 @@ from keras.models import Sequential
 from keras.layers import Conv2D,MaxPool2D,GlobalAveragePooling2D
 from keras.layers import Activation,Dropout,Flatten,Dense
 from keras.utils import np_utils
-from keras.optimizers import RMSprop
+from keras.optimizers import Adam
 import numpy as np 
 
 classes=['monkey','boar','crow']
@@ -41,7 +41,7 @@ def model_train(X,y):
     model.add(Dense(3))
     model.add(Activation('softmax'))
 
-    opt=RMSprop(lr=0.0001,decay=1e-6)
+    opt=Adam(lr=0.001)
 
     model.compile(
         loss='categorical_crossentropy',optimizer=opt,metrics=['accuracy'])
