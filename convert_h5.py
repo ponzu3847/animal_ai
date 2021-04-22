@@ -1,6 +1,6 @@
 import coremltools
 
-coreml_model=coremltools.converters.keras.convert(
+coreml_model=coremltools.convert(
     'animal_cnn_aug.h5',input_names='image',image_input_names='image',
     output_names='Prediction',class_labels=['monkey','boar','crow'])
 
