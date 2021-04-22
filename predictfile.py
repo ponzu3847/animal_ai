@@ -1,9 +1,8 @@
-import os
+import os,sys
 from flask import Flask,request,redirect,url_for
 from werkzeug.utils import secure_filename
-
 from keras.models import Sequential,load_model
-import keras,sys
+import keras
 import numpy as np 
 from PIL import Image
 

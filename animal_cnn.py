@@ -1,8 +1,8 @@
-from keras.models import Sequential
-from keras.layers import Conv2D,MaxPool2D
-from keras.layers import Activation,Dropout,Flatten,Dense
-from keras.utils import np_utils
-import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D,MaxPool2D
+from tensorflow.keras.layers import Activation,Dropout,Flatten,Dense
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.optimizers import RMSprop
 import numpy as np 
 
 classes=['monkey','boar','crow']
@@ -13,8 +13,8 @@ def main():
     X_train,X_test,y_train,y_test=np.load('./animal.npy',allow_pickle=True)
     X_train=X_train.astype('float')/255
     X_test=X_test.astype('float')/255
-    y_train=np_utils.to_categorical(y_train,num_classes)
-    y_test=np_utils.to_categorical(y_test,num_classes)
+    y_train=to_categorical(y_train,num_classes)
+    y_test=to_categorical(y_test,num_classes)
 
     model=model_train(X_train,y_train)
     model_eval(model,X_test,y_test)
@@ -42,7 +42,7 @@ def model_train(X,y):
     model.add(Dense(3))
     model.add(Activation('softmax'))
 
-    opt=keras.optimizers.RMSprop(lr=0.0001,rho=1e-6)
+    opt=RMSprop(lr=0.0001,rho=1e-6)
 
     model.compile(
         loss='categorical_crossentropy',optimizer=opt,metrics=['accuracy'])
